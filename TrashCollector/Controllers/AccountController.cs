@@ -167,10 +167,12 @@ namespace TrashCollector.Controllers
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     if(model.UserRole == "Customer")
                     {
+                        UserManager.AddToRole(user.Id, "Customer");
                         return RedirectToAction("Create", "Customer");
                     }
                     else
                     {
+                        UserManager.AddToRole(user.Id, "Employee");
                         return RedirectToAction("Create", "Employee");
                     }
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
