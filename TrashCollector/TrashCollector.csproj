@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201910291611349_InitialMigration.Designer.cs">
       <DependentUpon>201910291611349_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910301727215_AddUserRole.cs" />
+    <Compile Include="Migrations\201910301727215_AddUserRole.Designer.cs">
+      <DependentUpon>201910301727215_AddUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -266,6 +270,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910291611349_InitialMigration.resx">
       <DependentUpon>201910291611349_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301727215_AddUserRole.resx">
+      <DependentUpon>201910301727215_AddUserRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

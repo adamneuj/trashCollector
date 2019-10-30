@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,6 +30,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customer/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Name = new SelectList(daysOfWeek);
@@ -42,6 +44,18 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var pickupDay = new SelectList(new[]
+{
+                    new {value = 1, text = "Sunday"},
+                    new {value = 2, text = "Monday"},
+                    new {value = 3, text = "Tuesday"},
+                    new {value = 4, text = "Wednesday"},
+                    new {value = 5, text = "Thursday"},
+                    new {value = 6, text = "Friday"},
+                    new {value = 7, text = "Saturday"}
+                });
+                ViewBag.Name = pickupDay;
+                customer.ApplicationId = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");

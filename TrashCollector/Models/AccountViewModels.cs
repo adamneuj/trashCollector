@@ -82,7 +82,7 @@ namespace TrashCollector.Models
 
         [Required]
         [Display(Name = "Role")]
-        public string Role { get; set; }
+        public string UserRole { get; set; }
     }
 
     public class ResetPasswordViewModel
