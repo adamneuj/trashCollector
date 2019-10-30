@@ -69,17 +69,31 @@ namespace TrashCollector.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.Name = new SelectList(daysOfWeek);
+            Customer customer = db.Customers.FirstOrDefault(c => c.Id == id);
+            return View(customer);
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Customer customer)
         {
             try
             {
-                // TODO: Add update logic here
-
+                Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == id);
+                customerFromDb.FirstName = customer.FirstName;
+                customerFromDb.LastName = customer.LastName;
+                customerFromDb.StreetAddress = customer.StreetAddress;
+                customerFromDb.City = customer.City;
+                customerFromDb.State = customer.State;
+                customerFromDb.ZipCode = customer.ZipCode;
+                customerFromDb.Balance = customer.Balance;
+                customerFromDb.PickupDay = customer.PickupDay;
+                customerFromDb.AdditionalPickupDay = customer.AdditionalPickupDay;
+                customerFromDb.PickupConfirmed = customer.PickupConfirmed;
+                customerFromDb.SuspendStart = customer.SuspendStart;
+                customerFromDb.SuspendEnd = customer.SuspendEnd;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
