@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrashCollector.Models;
 
 namespace TrashCollector.Controllers
 {
     public class CustomerController : Controller
     {
+        ApplicationDbContext db;
+        public CustomerController()
+        {
+            db = new ApplicationDbContext();
+        }
         // GET: Customer
         public ActionResult Index()
         {
@@ -23,17 +29,18 @@ namespace TrashCollector.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
-            return View();
+            Customer customer = new Customer();
+            return View(customer);
         }
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Customer customer)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                db.Customers.Add(customer);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
