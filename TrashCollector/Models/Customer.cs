@@ -21,11 +21,16 @@ namespace TrashCollector.Models
         public string PickupDay { get; set; }
         public string AdditionalPickupDay { get; set; }
         public bool PickupConfirmed { get; set; }
-        public DateTime SuspendStart { get; set; }
-        public DateTime SuspendEnd { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? SuspendStart { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? SuspendEnd { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
     }
 }

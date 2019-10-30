@@ -45,7 +45,7 @@ namespace TrashCollector.Controllers
             try
             {
                 var pickupDay = new SelectList(new[]
-{
+                {
                     new {value = 1, text = "Sunday"},
                     new {value = 2, text = "Monday"},
                     new {value = 3, text = "Tuesday"},
@@ -59,12 +59,12 @@ namespace TrashCollector.Controllers
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+        }
             catch
             {
                 return View();
-            }
-        }
+    }
+}
 
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
