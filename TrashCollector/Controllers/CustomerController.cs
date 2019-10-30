@@ -10,8 +10,10 @@ namespace TrashCollector.Controllers
     public class CustomerController : Controller
     {
         ApplicationDbContext db;
+        string[] daysOfWeek;
         public CustomerController()
         {
+            daysOfWeek = new string[7] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
             db = new ApplicationDbContext();
         }
         // GET: Customer
@@ -29,6 +31,7 @@ namespace TrashCollector.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
+            ViewBag.Name = new SelectList(daysOfWeek);
             Customer customer = new Customer();
             return View(customer);
         }
