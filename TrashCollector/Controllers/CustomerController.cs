@@ -29,6 +29,13 @@ namespace TrashCollector.Controllers
             return View();
         }
 
+        public ActionResult Balance()
+        {
+            string id = User.Identity.GetUserId();
+            Customer customer = db.Customers.FirstOrDefault(c => c.ApplicationId == id);
+            return View(customer);
+        }
+
         // GET: Customer/Create
         [Authorize]
         public ActionResult Create()

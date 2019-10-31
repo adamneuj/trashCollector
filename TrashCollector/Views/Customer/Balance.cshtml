@@ -1,0 +1,19 @@
+﻿@model TrashCollector.Models.Customer
+
+@{
+    ViewBag.Title = "Balance";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt><h2>
+            @Html.DisplayNameFor(model => model.Balance)
+        </h2></dt>
+
+        <dd><h2>
+            @Html.Label("$")
+            @Html.DisplayFor(model => model.Balance)
+        </h2></dd>
+    </dl>
+</div>
