@@ -104,8 +104,33 @@ namespace TrashCollector.Controllers
             }
             catch
             {
-                return View(id);
+                return View();
             }
+        }
+
+        public ActionResult Suspend()
+        {
+            string id = User.Identity.GetUserId();
+            Customer customer = db.Customers.FirstOrDefault(c => c.ApplicationId == id);
+            return View(customer);
+        }
+        
+        [HttpPost]
+        public ActionResult Suspend(int id, Customer customer)
+        {
+            try
+            {
+                Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == id);
+                customerFromDb.SuspendStart = customer.SuspendStart;
+                customerFromDb.SuspendEnd = customer.SuspendEnd;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View();
+            }
+
         }
 
         // GET: Customer/Edit/5
