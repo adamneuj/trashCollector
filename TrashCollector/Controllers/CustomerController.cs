@@ -58,13 +58,36 @@ namespace TrashCollector.Controllers
                 customer.ApplicationId = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-        }
+                return RedirectToAction("Index", "Home");
+            }
             catch
             {
                 return View();
-    }
-}
+            }
+        }
+        public ActionResult Pickup()
+        {
+            string id = User.Identity.GetUserId();
+            Customer customer = db.Customers.FirstOrDefault(c => c.ApplicationId == id);
+            return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult Pickup(int id, Customer customer)
+        {
+            try
+            {
+                Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == id);
+                customerFromDb.PickupDay = customer.PickupDay;
+                customerFromDb.AdditionalPickupDay = customer.AdditionalPickupDay;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View(id);
+            }
+        }
 
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
@@ -98,7 +121,7 @@ namespace TrashCollector.Controllers
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
 
