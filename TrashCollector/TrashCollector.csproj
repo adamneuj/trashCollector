@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201910301851361_UpdateNullableTypeToDateTime.Designer.cs">
       <DependentUpon>201910301851361_UpdateNullableTypeToDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910311502144_UpdateDateFormat.cs" />
+    <Compile Include="Migrations\201910311502144_UpdateDateFormat.Designer.cs">
+      <DependentUpon>201910311502144_UpdateDateFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -257,7 +261,6 @@
     <Content Include="Views\Shared\_LayoutCustomer.cshtml" />
     <Content Include="Views\Shared\_LayoutEmployee.cshtml" />
     <Content Include="Views\Customer\Pickup.cshtml" />
-    <Content Include="Views\Customer\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910301851361_UpdateNullableTypeToDateTime.resx">
       <DependentUpon>201910301851361_UpdateNullableTypeToDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311502144_UpdateDateFormat.resx">
+      <DependentUpon>201910311502144_UpdateDateFormat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

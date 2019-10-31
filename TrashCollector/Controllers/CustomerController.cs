@@ -69,6 +69,7 @@ namespace TrashCollector.Controllers
         {
             string id = User.Identity.GetUserId();
             Customer customer = db.Customers.FirstOrDefault(c => c.ApplicationId == id);
+            ViewBag.Name = new SelectList(daysOfWeek);
             return View(customer);
         }
 
@@ -77,6 +78,17 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var pickupDay = new SelectList(new[]
+                {
+                    new {value = 1, text = "Sunday"},
+                    new {value = 2, text = "Monday"},
+                    new {value = 3, text = "Tuesday"},
+                    new {value = 4, text = "Wednesday"},
+                    new {value = 5, text = "Thursday"},
+                    new {value = 6, text = "Friday"},
+                    new {value = 7, text = "Saturday"}
+                });
+                ViewBag.Name = pickupDay;
                 Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == id);
                 customerFromDb.PickupDay = customer.PickupDay;
                 customerFromDb.AdditionalPickupDay = customer.AdditionalPickupDay;
