@@ -19,7 +19,8 @@ namespace TrashCollector.Models
         public int ZipCode { get; set; }
         public double Balance { get; set; }
         public string PickupDay { get; set; }
-        public string AdditionalPickupDay { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? AdditionalPickupDay { get; set; }
         public bool PickupConfirmed { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]

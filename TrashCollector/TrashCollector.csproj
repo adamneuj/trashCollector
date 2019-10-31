@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201910311502144_UpdateDateFormat.Designer.cs">
       <DependentUpon>201910311502144_UpdateDateFormat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910311611077_UpdateAdditionalPickupDayToDateTime.cs" />
+    <Compile Include="Migrations\201910311611077_UpdateAdditionalPickupDayToDateTime.Designer.cs">
+      <DependentUpon>201910311611077_UpdateAdditionalPickupDayToDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -291,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910311502144_UpdateDateFormat.resx">
       <DependentUpon>201910311502144_UpdateDateFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311611077_UpdateAdditionalPickupDayToDateTime.resx">
+      <DependentUpon>201910311611077_UpdateAdditionalPickupDayToDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
