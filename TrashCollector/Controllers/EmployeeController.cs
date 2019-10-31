@@ -18,7 +18,14 @@ namespace TrashCollector.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View();
+            DateTime day = DateTime.Today;
+            string today = day.DayOfWeek.ToString();
+            string id = User.Identity.GetUserId();
+            Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
+            List<Customer> customersFromDb = db.Customers.Where(c => c.ZipCode == employee.ZipCode && c.PickupDay == today).ToList();
+            List<Customer> customersAdditionalPickup = db.Customers.Where(c => c.AdditionalPickupDay == day).ToList();
+            customersFromDb.AddRange(customersAdditionalPickup);
+            return View(customersFromDb);
         }
 
         // GET: Employee/Details/5
