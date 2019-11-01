@@ -22,7 +22,7 @@ namespace TrashCollector.Controllers
             string today = day.DayOfWeek.ToString();
             string id = User.Identity.GetUserId();
             Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
-            List<Customer> customersFromDb = db.Customers.Where(c => c.ZipCode == employee.ZipCode && c.PickupDay == today).ToList();
+            List<Customer> customersFromDb = db.Customers.Where(c => c.ZipCode == employee.ZipCode && c.PickupDay == today && c.PickupConfirmed != true).ToList();
             List<Customer> customersAdditionalPickup = db.Customers.Where(c => c.AdditionalPickupDay == day).ToList();
             customersFromDb.AddRange(customersAdditionalPickup);
             return View(customersFromDb);
@@ -32,6 +32,22 @@ namespace TrashCollector.Controllers
         {
             Customer customer = db.Customers.FirstOrDefault(c => c.Id == id);
             return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmPickup(int id, Customer customer)
+        {
+            try
+            {
+                Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == id);
+                customerFromDb.PickupConfirmed = customer.PickupConfirmed;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(id);
+            }
         }
 
         // GET: Employee/Details/5
