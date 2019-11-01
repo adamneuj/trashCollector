@@ -10,6 +10,10 @@ namespace TrashCollector.Controllers
     {
         public ActionResult Index()
         {
+            if (User.IsInRole("Employee"))
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             return View();
         }
 

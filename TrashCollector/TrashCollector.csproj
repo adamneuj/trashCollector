@@ -268,6 +268,7 @@
     <Content Include="Views\Customer\Balance.cshtml" />
     <Content Include="Views\Customer\Suspend.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\ConfirmPickup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
