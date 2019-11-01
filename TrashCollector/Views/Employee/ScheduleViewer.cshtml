@@ -1,13 +1,26 @@
 ﻿@model IEnumerable<TrashCollector.Models.Customer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Schedule";
 }
 
-<h2>Today's Route</h2>
+<h2>Schedule</h2>
 
+<p>
+    Select Date to View:<br />
+    @Html.ActionLink("Sunday", "ScheduleViewer", new { day = "Sunday" }) |
+    @Html.ActionLink("Monday", "ScheduleViewer", new { day = "Monday" }) |
+    @Html.ActionLink("Tuesday", "ScheduleViewer", new { day = "Tuesday" }) |
+    @Html.ActionLink("Wednesday", "ScheduleViewer", new { day = "Wednesday" }) |
+    @Html.ActionLink("Thursday", "ScheduleViewer", new { day = "Thursday" }) |
+    @Html.ActionLink("Friday", "ScheduleViewer", new { day = "Friday" }) |
+    @Html.ActionLink("Saturday", "ScheduleViewer", new { day = "Saturday" })
+</p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupDay)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.StreetAddress)
         </th>
@@ -20,15 +33,14 @@
         <th>
             @Html.DisplayNameFor(model => model.ZipCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupConfirmed)
-        </th>
     </tr>
-
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupDay)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StreetAddress)
             </td>
@@ -41,9 +53,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
-            <td>
-                @Html.ActionLink("Confirm Pickup", "ConfirmPickup", new { id=item.Id })
-            </td>
         </tr>
     }
+
 </table>

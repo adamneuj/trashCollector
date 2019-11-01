@@ -12,9 +12,11 @@ namespace TrashCollector.Controllers
     {
         ApplicationDbContext db;
         double pickupCharge = 5;
+        string[] daysOfWeek;
         public EmployeeController()
         {
             db = new ApplicationDbContext();
+            daysOfWeek = new string[7] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
         }
         // GET: Employee
         public ActionResult Index()
@@ -36,11 +38,11 @@ namespace TrashCollector.Controllers
 
         public ActionResult CompletedPickups()
         {
-            DateTime day = DateTime.Today;
-            string today = day.DayOfWeek.ToString();
+            DateTime today = DateTime.Today;
+            string dayOfWeek = today.DayOfWeek.ToString();
             string id = User.Identity.GetUserId();
             Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
-            List<Customer> customersFromDb = db.Customers.Where(c => c.PickupConfirmed == true && c.PickupDay == today).ToList();
+            List<Customer> customersFromDb = db.Customers.Where(c => c.PickupConfirmed == true && c.PickupDay == dayOfWeek).ToList();
             return View(customersFromDb);
         }
 
@@ -66,6 +68,22 @@ namespace TrashCollector.Controllers
             {
                 return View(id);
             }
+        }
+
+        public ActionResult Schedule()
+        {
+            string id = User.Identity.GetUserId();
+            Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
+            List<Customer> customers = db.Customers.Where(c => c.ZipCode == employee.ZipCode).ToList();
+            return View(customers);
+        }
+
+        public ActionResult ScheduleViewer(string day)
+        {
+            string id = User.Identity.GetUserId();
+            Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
+            List<Customer> customers = db.Customers.Where(c => c.ZipCode == employee.ZipCode && c.PickupDay == day).ToList();
+            return View(customers);
         }
 
         // GET: Employee/Details/5
