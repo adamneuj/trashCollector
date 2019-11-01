@@ -28,6 +28,12 @@ namespace TrashCollector.Controllers
             return View(customersFromDb);
         }
 
+        public ActionResult ConfirmPickup(int id)
+        {
+            Customer customer = db.Customers.FirstOrDefault(c => c.Id == id);
+            return View(customer);
+        }
+
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
