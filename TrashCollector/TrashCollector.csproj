@@ -272,6 +272,7 @@
     <Content Include="Views\Employee\CompletedPickups.cshtml" />
     <Content Include="Views\Employee\Schedule.cshtml" />
     <Content Include="Views\Employee\ScheduleViewer.cshtml" />
+    <Content Include="Views\Employee\CustomerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

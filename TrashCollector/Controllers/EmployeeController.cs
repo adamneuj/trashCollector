@@ -87,9 +87,10 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult CustomerDetails(int id)
         {
-            return View();
+            Customer customer = db.Customers.FirstOrDefault(c => c.Id == id);
+            return View(customer);
         }
 
         // GET: Employee/Create
