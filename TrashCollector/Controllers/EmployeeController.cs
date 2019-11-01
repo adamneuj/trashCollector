@@ -11,6 +11,7 @@ namespace TrashCollector.Controllers
     public class EmployeeController : Controller
     {
         ApplicationDbContext db;
+        double pickupCharge = 5;
         public EmployeeController()
         {
             db = new ApplicationDbContext();
@@ -28,6 +29,16 @@ namespace TrashCollector.Controllers
             return View(customersFromDb);
         }
 
+        public ActionResult CompletedPickups()
+        {
+            DateTime day = DateTime.Today;
+            string today = day.DayOfWeek.ToString();
+            string id = User.Identity.GetUserId();
+            Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
+            List<Customer> customersFromDb = db.Customers.Where(c => c.PickupConfirmed == true && c.PickupDay == today).ToList();
+            return View(customersFromDb);
+        }
+
         public ActionResult ConfirmPickup(int id)
         {
             Customer customer = db.Customers.FirstOrDefault(c => c.Id == id);
@@ -41,6 +52,8 @@ namespace TrashCollector.Controllers
             {
                 Customer customerFromDb = db.Customers.FirstOrDefault(c => c.Id == id);
                 customerFromDb.PickupConfirmed = customer.PickupConfirmed;
+                customerFromDb.Balance += pickupCharge;
+                customerFromDb.Balance = Math.Round(customerFromDb.Balance, 2);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

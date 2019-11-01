@@ -20,9 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.ZipCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupConfirmed)
-        </th>
     </tr>
 
 
@@ -40,9 +37,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.ActionLink("Confirm Pickup", "ConfirmPickup", new { id = item.Id })
             </td>
         </tr>
     }

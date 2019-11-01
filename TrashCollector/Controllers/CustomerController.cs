@@ -33,6 +33,7 @@ namespace TrashCollector.Controllers
         {
             string id = User.Identity.GetUserId();
             Customer customer = db.Customers.FirstOrDefault(c => c.ApplicationId == id);
+            customer.Balance = Math.Round(customer.Balance, 2);
             return View(customer);
         }
 
