@@ -90,6 +90,8 @@ namespace TrashCollector.Controllers
         public ActionResult CustomerDetails(int id)
         {
             Customer customer = db.Customers.FirstOrDefault(c => c.Id == id);
+            string address = customer.StreetAddress + " " + customer.City + " " + customer.State;
+            ViewBag.Address = address;
             return View(customer);
         }
 
