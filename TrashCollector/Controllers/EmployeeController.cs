@@ -27,7 +27,7 @@ namespace TrashCollector.Controllers
             Employee employee = db.Employees.FirstOrDefault(e => e.ApplicationId == id);
             List<Customer> customersFromDb = db.Customers.Where(c => c.ZipCode == employee.ZipCode && c.PickupDay == dayOfWeek && c.PickupConfirmed != true).ToList();
             List<Customer> customersAdditionalPickup = db.Customers.Where(c => c.AdditionalPickupDay == today).ToList();
-            List<Customer> customersSuspended = db.Customers.Where(c => c.SuspendStart <= today && c.SuspendEnd > today).ToList();
+            List<Customer> customersSuspended = db.Customers.Where(c => c.SuspendStart <= today && c.SuspendEnd > today && c.ZipCode == employee.ZipCode && c.PickupDay == dayOfWeek).ToList();
             customersFromDb.AddRange(customersAdditionalPickup);
             foreach(Customer customer in customersSuspended)
             {
